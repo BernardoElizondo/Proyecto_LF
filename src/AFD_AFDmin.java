@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 
@@ -16,7 +17,7 @@ public class AFD_AFDmin {
 		ArrayList<Character> alfabetoLista = new ArrayList<Character>();
 		ArrayList<Estado> estados = new ArrayList<Estado>();
 		ArrayList<ArrayList<String>> matriz = new ArrayList<ArrayList<String>>();
-		ArrayList<ArrayList<ArrayList<String>>> tabla = new ArrayList<ArrayList<ArrayList<String>>>();
+		ArrayList<ArrayList<Estado>> tabla = new ArrayList<ArrayList<Estado>>();
 		
 		//Leemos el alfabeto y sacamos su magnitud
 		alfabeto = in.nextLine();
@@ -33,46 +34,46 @@ public class AFD_AFDmin {
 		System.out.println(estadoIni);
 		System.out.println(estadosFin);
 		
+		int m = 0;
 		//Creando la matriz de función de transiciones	
 		while (in.hasNextLine()) {
 			ArrayList<String> filaLista = new ArrayList <String>();
+			Estado estado = new Estado();
+			estado.numEstado = m;
+			if(estadoIni == m) {
+				estado.esInicial = true;
+			}
+			if(estadosFin.contains(m)) {
+				estado.esFinal=true;
+				System.out.println(m + " " + estado.toString());
+			}
+			estados.add(estado);			
+			
 			fila = in.nextLine();
 			separarFilas(fila, filaLista);
-			matriz.add(filaLista);			
+			estado.estados.addAll(filaLista);
+			matriz.add(filaLista);	
+			m++;
 		} 
-		System.out.println(matriz);
-		System.out.println(matriz.size());
+		System.out.println(estados.toString());
 		
 		int x = 0;
 		
-		//Establecemos estados iniciales y finales
-		for(int i = 0; i < matriz.size(); i++) {
-			Estado estado = new Estado();
-			if(estadoIni == i) {
-				estado.esInicial = true;
-			}
-			if(estadosFin.contains(i)) {
-				estado.esFinal=true;
-				System.out.println(i + " " + estado.toString());
-			}
-			estados.add(estado);
-		}
-		System.out.println(estados);
-		
-		
+
 		//Poblamos la tabla
-		for(int i = matriz.size(); i > 1; i--) {		
+		for(int i = estados.size(); i > 1; i--) {		
 			for(int j = 0; j < i-1; j++) {
-				ArrayList<ArrayList<String>> row = new ArrayList<ArrayList<String>>();
-				row.add(matriz.get(x));
-				row.add(matriz.get(j+(x+1)));
+				ArrayList<Estado> row = new ArrayList<Estado>();
+				row.add(estados.get(x));
+				row.add(estados.get(j+(x+1)));
 				tabla.add(row);
+				System.out.println(row.get(0).numEstado + " " + row.get(1).numEstado);
 				System.out.println(row);			
 			}
 			x++;			
 		}
 		
-		System.out.println(tabla);
+		//System.out.println(tabla);
 		
 		
 		in.close();

@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class Estado {
+	public int numEstado;
 	public boolean esFinal;
 	public boolean esInicial;
-	public ArrayList<ArrayList<String>> row = new ArrayList<ArrayList<String>>();
+	public ArrayList<String> estados = new ArrayList<String>();
 	
 	
 	Estado(){
@@ -12,7 +13,7 @@ public class Estado {
 	}
 	
 	public String toString() {
-		return "Inicial: " + this.esInicial + "\nFinal: " + this.esFinal;
+		return "[Inicial: " + this.esInicial + " Final: " + this.esFinal + "Estados" + estados.toString() + "]\n";
 	}
 	
 }
