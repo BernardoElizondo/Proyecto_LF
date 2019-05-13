@@ -73,6 +73,21 @@ public class AFD_AFDmin {
 			x++;			
 		}
 		
+		System.out.println(tabla.size());
+		System.out.println(tabla);
+		
+		m = 0;
+		//Paso 3
+		for(int i = 0; i < tabla.size(); i++) {
+			if(tabla.get(i).get(0).esFinal == tabla.get(i).get(1).esFinal) {
+				
+			} else {
+				tabla.get(i).clear();
+			}
+		}
+		
+		System.out.println(tabla);
+		
 		//System.out.println(tabla);
 		
 		

@@ -13,7 +13,8 @@ public class Estado {
 	}
 	
 	public String toString() {
-		return "[Inicial: " + this.esInicial + " Final: " + this.esFinal + "Estados" + estados.toString() + "]\n";
+		//return "[Inicial: " + this.esInicial + " Final: " + this.esFinal + "Estados" + estados.toString() + "]";
+		return Integer.toString(numEstado);
 	}
 	
 }
