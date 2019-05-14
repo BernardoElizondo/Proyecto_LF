@@ -37,7 +37,7 @@ public class AFD_AFDmin {
 		System.out.println(estadosFin);
 		
 		int m = 0;
-		//Creando la matriz de función de transiciones	
+		//Creando la matriz de funciï¿½n de transiciones	
 		while (in.hasNextLine()) {
 			ArrayList<String> filaLista = new ArrayList <String>();
 			Estado estado = new Estado();
