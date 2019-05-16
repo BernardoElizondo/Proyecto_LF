@@ -23,7 +23,6 @@ public class AFD_AFDmin {
 		//Leemos el alfabeto y sacamos su magnitud
 		alfabeto = in.nextLine();
 		separarAlfabeto(alfabeto, alfabetoLista);
-		System.out.println("Size alfabeto: " + alfabetoLista.size());
 		
 		//Establecemos el estado inicial
 		estadoIni = Integer.parseInt(in.nextLine());
@@ -32,9 +31,6 @@ public class AFD_AFDmin {
 		estadosFinStr = in.nextLine();
 		separarEstadosFinales(estadosFinStr, estadosFin);	
 		
-		System.out.println(alfabetoLista);
-		System.out.println(estadoIni);
-		System.out.println(estadosFin);
 		
 		int m = 0;
 		//Creando la matriz de funci�n de transiciones	
@@ -47,7 +43,6 @@ public class AFD_AFDmin {
 			}
 			if(estadosFin.contains(m)) {
 				estado.esFinal=true;
-				System.out.println(m + " " + estado.toString());
 			}
 			estados.add(estado);			
 			
@@ -57,7 +52,6 @@ public class AFD_AFDmin {
 			matriz.add(filaLista);	
 			m++;
 		} 
-		System.out.println(estados.toString());
 		
 		int x = 0;
 		
@@ -69,16 +63,13 @@ public class AFD_AFDmin {
 				row.add(estados.get(x));
 				row.add(estados.get(j+(x+1)));
 				tabla.add(row);
-				System.out.println(row.get(0).numEstado + " " + row.get(1).numEstado);
-				System.out.println(row);			
 			}
 			x++;			
 		}
 		
-		System.out.println(tabla.size());
-		System.out.println(tabla);
 		
 		m = 0;
+		
 		//Paso 3
 		for(int i = 0; i < tabla.size(); i++) {
 			if(tabla.get(i).get(0).esFinal == tabla.get(i).get(1).esFinal) {
@@ -87,9 +78,7 @@ public class AFD_AFDmin {
 				tabla.remove(i);
 				i--;
 			}
-		}
-		
-		System.out.println("Tabla" + tabla);
+		}	
 		
 		
 		ArrayList<ArrayList<Estado>> borrados = new ArrayList<ArrayList<Estado>>();
@@ -97,15 +86,11 @@ public class AFD_AFDmin {
 		ArrayList<ArrayList<String>> tablaPaso4Copia = new ArrayList<ArrayList<String>>();
 		m = 0;
 		x = 0;
+		
 		//Paso 4
 		while(m != 1) {
 			x = 0;
-			m = 1;
-
-			System.out.println("TablaPaso4Copia: " + tablaPaso4Copia);
-			System.out.println("TablaPaso4: " + tablaPaso4);
-			System.out.println("Borrados: " + borrados);
-			
+			m = 1;			
 			
 			if(!borrados.isEmpty()) {
 				for(int i = 0; i < tablaPaso4Copia.size(); i++) {
@@ -127,7 +112,6 @@ public class AFD_AFDmin {
 				int estadoA = tabla.get(i).get(0).numEstado;
 				int estadoB = tabla.get(i).get(1).numEstado;
 				
-				System.out.println(matriz.get(estadoA).get(0));
 				
 				ArrayList<String> filaLista = new ArrayList <String>();
 				for(int j = 0; j < alfabetoLista.size(); j++) {
@@ -140,7 +124,6 @@ public class AFD_AFDmin {
 				for(int j = 0; j < tablaPaso4.get(i).size(); j = j + 2) {
 					int estadoA = Integer.parseInt(tablaPaso4.get(x).get(j));
 					int estadoB = Integer.parseInt(tablaPaso4.get(x).get(j+1));					
-					//System.out.println(i + "EstadoA: " + estadoA + " EstadoB: " + estadoB);
 					
 					if(estados.get(estadoA).esFinal != estados.get(estadoB).esFinal) {
 						borrados.add(tabla.get(i));
@@ -154,29 +137,33 @@ public class AFD_AFDmin {
 				}
 				x++;
 			}
-			System.out.println("Matrix : " + tablaPaso4);
 			tablaPaso4Copia = (ArrayList<ArrayList<String>>) tablaPaso4.clone();
 			tablaPaso4.clear();
 			
 		}
-
 		
-		System.out.println("Tabla antes de prueba: " + tabla);
 		m = 1;
 		x = 0;
 		
 		
 		//Prueba
-
-
+//		System.out.println("Estados" + matriz);
+		System.out.println("Estados iguales: " + tabla);
 		
-		System.out.println("Borrados: " + borrados);
-		
-
-		System.out.println(tabla);
-		
-		System.out.println("Matriz: " + matriz.toString());
-		
+//		ArrayList<Integer> numeros =  new ArrayList<Integer>();
+//		for(int i = 0; i < matriz.size(); i++) {
+//			numeros.add(i);
+//		}
+//		
+//		System.out.println(numeros);
+//		for(int i = 0; i < matriz.size();i++) {
+//			if(numeros.contains(tabla.get(i).get(0).numEstado)) {
+//				
+//			}
+//		}
+//		
+//		System.out.println(numeros);
+//		
 		//System.out.println(tabla);
 		
 		
