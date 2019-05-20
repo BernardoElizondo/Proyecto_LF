@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
-
-
 public class AFD_AFDmin {
 	public static void main(String args[]) throws FileNotFoundException{
 		File file = new File("files/AFD.txt");
